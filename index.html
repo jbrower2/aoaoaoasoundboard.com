@@ -88,28 +88,29 @@
 
 <script>
   const sounds = [
-    "aoaoaoa.mp3",
-    "i need to calm down.mp3",
-    "sorry kids we dont go to church.mp3",
-    "thats the rule thats the goal now.mp3",
-    "they took the l and gave it to the gbtq.mp3",
-    "what are we doing whats going on.mp3",
-    "im falling.mp3",
-    "im missing.mp3",
-    "pinwheel.mp3",
-    "straight to padlet.mp3",
+    "aoaoaoa",
+    "i need to calm down",
+    "sorry kids we dont go to church",
+    "thats the rule thats the goal now",
+    "they took the l and gave it to the gbtq",
+    "what are we doing whats going on",
+    "im falling",
+    "im missing",
+    "pinwheel",
+    "straight to padlet",
+    "come on flalalady",
   ];
 
   const board = document.getElementById("board");
   let current = null;
 
   sounds.forEach(file => {
-    const audio = new Audio(encodeURIComponent(file));
+    const audio = new Audio(encodeURIComponent(file + ".mp3"));
     audio.preload = "none";
 
     const btn = document.createElement("button");
     btn.className = "sound";
-    btn.textContent = file.replace(/\.mp3$/i, "");
+    btn.textContent = file;
     btn.addEventListener("click", () => {
       if (current && current.audio !== audio) {
         current.audio.pause();
