@@ -87,11 +87,51 @@
     border-color: var(--accent);
     background: var(--button-hover);
   }
+  @keyframes wiggle {
+    0%   { transform: rotate(-0.8deg); }
+    50%  { transform: rotate(0.8deg);  }
+    100% { transform: rotate(-0.8deg); }
+  }
+  body.edit button.sound {
+    animation: wiggle 0.25s ease-in-out infinite;
+    cursor: grab;
+  }
+  body.edit button.sound:active { cursor: grabbing; }
+  body.edit button.sound.dragging {
+    opacity: 0.4;
+    animation: none;
+  }
+  body.edit button.sound.drop-before {
+    box-shadow: -3px 0 0 0 var(--accent);
+  }
+  body.edit button.sound.drop-after {
+    box-shadow: 3px 0 0 0 var(--accent);
+  }
   footer {
     text-align: center;
     margin-top: 3rem;
     color: #777;
     font-size: 0.85rem;
+  }
+  .edit-toggle {
+    background: transparent;
+    color: #777;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+    margin-left: 0.5rem;
+  }
+  .edit-toggle:hover { color: var(--fg); border-color: #555; }
+  body.edit #editToggle {
+    color: #4ade80;
+    border-color: #4ade80;
+  }
+  body.edit #editToggle:hover {
+    color: #0e0e10;
+    background: #4ade80;
+    border-color: #4ade80;
   }
 </style>
 </head>
@@ -108,6 +148,8 @@
 
 <footer>
   <a class="submissions" href="https://forms.gle/4KtG1GAvCupCYK1f7">submissions</a>
+  <button class="edit-toggle" id="editToggle" type="button">rearrange</button>
+  <button class="edit-toggle" id="resetOrder" type="button" hidden>reset order</button>
 </footer>
 
 <script>
@@ -189,17 +231,47 @@
 
   const board = document.getElementById("board");
   const filter = document.getElementById("filter");
+  const editToggle = document.getElementById("editToggle");
+  const resetBtn = document.getElementById("resetOrder");
+  const STORAGE_KEY = "soundOrder";
   const buttons = [];
 
-  sounds.forEach(file => {
+  function loadOrder() {
+    let saved = null;
+    try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch {}
+    if (!Array.isArray(saved)) return sounds.slice();
+    const set = new Set(sounds);
+    const kept = saved.filter(s => set.has(s));
+    const keptSet = new Set(kept);
+    const missing = sounds.filter(s => !keptSet.has(s));
+    const order = kept.concat(missing);
+    if (order.length !== saved.length || missing.length) saveOrder(order);
+    return order;
+  }
+  function saveOrder(order) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(order)); } catch {}
+    updateResetVisibility();
+  }
+  function updateResetVisibility() {
+    let has = false;
+    try { has = localStorage.getItem(STORAGE_KEY) !== null; } catch {}
+    resetBtn.hidden = !has;
+  }
+  function currentOrder() {
+    return Array.from(board.children).map(b => b.textContent);
+  }
+
+  loadOrder().forEach(file => {
     const audio = new Audio(encodeURIComponent(file + ".mp3"));
     audio.preload = "none";
 
     const btn = document.createElement("button");
     btn.className = "sound";
     btn.textContent = file;
+    btn.style.animationDelay = (Math.random() * -0.25) + "s";
     buttons.push(btn);
     btn.addEventListener("click", () => {
+      if (document.body.classList.contains("edit")) return;
       if (!audio.paused) {
         audio.pause();
         audio.currentTime = 0;
@@ -213,6 +285,37 @@
       btn.classList.remove("playing");
     });
 
+    btn.addEventListener("dragstart", e => {
+      if (!document.body.classList.contains("edit")) { e.preventDefault(); return; }
+      btn.classList.add("dragging");
+      e.dataTransfer.effectAllowed = "move";
+      e.dataTransfer.setData("text/plain", file);
+    });
+    btn.addEventListener("dragend", () => {
+      btn.classList.remove("dragging");
+      buttons.forEach(b => b.classList.remove("drop-before", "drop-after"));
+    });
+    btn.addEventListener("dragover", e => {
+      if (!document.body.classList.contains("edit")) return;
+      const dragging = board.querySelector(".dragging");
+      if (!dragging || dragging === btn) return;
+      e.preventDefault();
+      const rect = btn.getBoundingClientRect();
+      const after = (e.clientX - rect.left) > rect.width / 2;
+      buttons.forEach(b => b.classList.remove("drop-before", "drop-after"));
+      btn.classList.add(after ? "drop-after" : "drop-before");
+    });
+    btn.addEventListener("drop", e => {
+      if (!document.body.classList.contains("edit")) return;
+      e.preventDefault();
+      const dragging = board.querySelector(".dragging");
+      if (!dragging || dragging === btn) return;
+      const rect = btn.getBoundingClientRect();
+      const after = (e.clientX - rect.left) > rect.width / 2;
+      board.insertBefore(dragging, after ? btn.nextSibling : btn);
+      buttons.forEach(b => b.classList.remove("drop-before", "drop-after"));
+    });
+
     board.appendChild(btn);
   });
 
@@ -222,6 +325,30 @@
       btn.classList.toggle("hidden", q && !btn.textContent.toLowerCase().includes(q));
     });
   });
+
+  editToggle.addEventListener("click", () => {
+    const on = document.body.classList.toggle("edit");
+    if (on) {
+      editToggle.textContent = "save";
+    } else {
+      saveOrder(currentOrder());
+      editToggle.textContent = "rearrange";
+    }
+    buttons.forEach(b => b.draggable = on);
+  });
+
+  resetBtn.addEventListener("click", () => {
+    if (!confirm("Reset to the default order?")) return;
+    try { localStorage.removeItem(STORAGE_KEY); } catch {}
+    const byName = new Map(buttons.map(b => [b.textContent, b]));
+    sounds.forEach(name => {
+      const b = byName.get(name);
+      if (b) board.appendChild(b);
+    });
+    updateResetVisibility();
+  });
+
+  updateResetVisibility();
 </script>
 </body>
 </html>
