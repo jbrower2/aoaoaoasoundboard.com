@@ -155,55 +155,39 @@
 
 <script>
   const sounds = [
-    "aoaoaoa",                                 // Blackstreet - No Diggity                             -    3:10 - https://www.youtube.com/watch?v=3KL9mRus19o
-    "i need to calm down",                     // Smosh Pit - How Well Do We Remember 2024?            -   12:03 - https://www.youtube.com/watch?v=Q7BPr7BLm0s
-    "sorry kids we dont go to church",         // SNL - Tucker Carlson Weekend Update                  -    0:49 - https://www.youtube.com/watch?v=cssPptEqVWE
-    "thats the rule thats the goal now",       // SNL - Tucker Carlson Weekend Update                  -    0:52 - https://www.youtube.com/watch?v=cssPptEqVWE
-    "they took the l and gave it to the gbtq", // SNL - Tucker Carlson Weekend Update                  -    1:14 - https://www.youtube.com/watch?v=cssPptEqVWE
-    "what are we doing whats going on",        // SNL - Tucker Carlson Weekend Update                  -    0:56 - https://www.youtube.com/watch?v=cssPptEqVWE
-    "im falling",                              // #222 - Traffic Reporters                             -    5:31 - https://www.youtube.com/watch?v=OBNJ71wFWQI
-    "im missing",                              // #222 - Traffic Reporters                             -    5:47 - https://www.youtube.com/watch?v=OBNJ71wFWQI
-    "ive wandered off",                        // #222 - Traffic Reporters                             -    5:51 - https://www.youtube.com/watch?v=OBNJ71wFWQI
-    "pinwheel",                                // SNL - Pinwheel                                       -    0:53 - https://www.youtube.com/watch?v=ddYs_w6IffA
-    "straight to padlet",                      // #224 - WE ALL WROTE MEMOIRS - The After Show         -   22:22 - https://www.patreon.com/posts/we-all-wrote-157483717
-    "come on flalalady",                       // #195 - New Broadway Musical Cast (with Chris Renfro) -   14:46 - https://www.youtube.com/watch?v=Dlsb0-rPn3Y
-    "dizzle dutz",                             // #200 - The 200 Person Panel                          - 1:32:37 - https://www.youtube.com/watch?v=rZog3fKixbk
-    "hi dizzle dutz",                          // #200 - The 200 Person Panel                          - 1:32:41 - https://www.youtube.com/watch?v=rZog3fKixbk
-    "well hi dizzle dutz",                     // #200 - The 200 Person Panel                          - 1:32:43 - https://www.youtube.com/watch?v=rZog3fKixbk
-    "dizzle dutz ipad",                        // #200 - The 200 Person Panel                          - 1:33:30 - https://www.youtube.com/watch?v=rZog3fKixbk
-    "moose master",                            // Havin' A Day - Mariah Rose Faith + Jon Matteson      - 1:13:40 - https://www.youtube.com/watch?v=KLIoy2N8hE0
-    "sleep in labubu key change",              // #205 - Christmas Carol Singers                       -   27:54 - https://www.youtube.com/watch?v=q0vCTfqGGx4
-    "barbara ann hmm",                         // #131 - The Ladies of "The Look" are BACK!            -    0:41 - https://www.youtube.com/watch?v=GTtBP2S0gaI
-    "barbara ann huh",                         // #131 - The Ladies of "The Look" are BACK!            -    0:42 - https://www.youtube.com/watch?v=GTtBP2S0gaI
-    "youre miscorrecting me",                  // #131 - The Ladies of "The Look" are BACK!            -   39:09 - https://www.youtube.com/watch?v=GTtBP2S0gaI
-    "another day another dongle",              // #131 - The Ladies of "The Look" are BACK!            -   45:22 - https://www.youtube.com/watch?v=GTtBP2S0gaI
-    "stop it actually pisses me off",          // #168 - Teen Filmmakers (with Katie Marovitch)        -    8:54 - https://www.youtube.com/watch?v=1wtltz-qx0Y
-    "so just write it",                        // # 98 - How To Get Into A Film Festival               -   49:37 - https://www.youtube.com/watch?v=vFl4DotxZls
-    "ho bags with wings",                      // #213 - Romantasy Writers (with D.J. Mausner)         -   13:33 - https://www.youtube.com/watch?v=OtifYpD4Wm8
-    "turn it off",                             // # 96 - The Art Of Being a Wedding DJ                 -   11:19 - https://www.youtube.com/watch?v=47dXyVqZrzE
-    "fix you",                                 // #214 - Monster Truck Drivers                         -   36:37 - https://www.youtube.com/watch?v=JBIKn_H-WUg
-    "rock reveals jade",                       // #209 - Vertical Micro-Drama Writer’s Room            -   58:21 - https://www.youtube.com/watch?v=U-eRshQEDyA
-    "goldfish for the cracka man",             // #211 - Parents of Child Stars (with Ryan Gaul)       -   32:46 - https://www.youtube.com/watch?v=XTnodeLw8_c
-    "well wait a second now whos your nephew", // #211 - Parents of Child Stars (with Ryan Gaul)       -   35:36 - https://www.youtube.com/watch?v=XTnodeLw8_c
-    "im always fostering kittens",             // #211 - Parents of Child Stars (with Ryan Gaul)       -   46:39 - https://www.youtube.com/watch?v=XTnodeLw8_c
-    "nobody thinks im funny",                  // #211 - Parents of Child Stars (with Ryan Gaul)       -   52:38 - https://www.youtube.com/watch?v=XTnodeLw8_c
-    "malpractice suit",                        // #211 - Parents of Child Stars (with Ryan Gaul)       -   57:14 - https://www.youtube.com/watch?v=XTnodeLw8_c
-    "bed bath and beyond me",                  // #120 - Inside "The View" Spinoff "The Look"          -   40:57 - https://www.youtube.com/watch?v=iMem5ewH2Ss
-    "jesus quist",                             // #144 - We AlL pLaYeD tHe JoKeR                       -   10:12 - https://www.youtube.com/watch?v=4NycKy9hZH8
-    "why so bisexual",                         // #144 - We AlL pLaYeD tHe JoKeR                       -   45:21 - https://www.youtube.com/watch?v=4NycKy9hZH8
-    "green alien",                             // # 80 - Trailer Editors (w/ Jon Millstein)            -   20:35 - https://www.youtube.com/watch?v=o9RQd1RbPAM
-    "richard get down from there",             // #166 - We Made A Broadway Musical (with Gabe Gibbs)  -   27:55 - https://www.youtube.com/watch?v=vdVCT-Mv4BE
-    "did you guys fuck in the womb",           // # 58 - Improvised Roundtables, Ep 58: Agents         -   14:04 - https://www.youtube.com/watch?v=XOdvvUTw0rE
-    "your noose is untied",                    // #218 - Irish Playwrights                             -   29:02 - https://www.youtube.com/watch?v=CMpGGcnupsw
-    "veggie hot dog its good not lying",       // # 99 - Hot Dog Callers                               -   22:52 - https://www.youtube.com/watch?v=9QzUAG8q4c0
-    "i cant relate",                           // #135 - Vegas Performers                              -    4:01 - https://www.youtube.com/watch?v=pIm2E0OfrlE
-    "the puppet said that",                    // #135 - Vegas Performers                              -   16:52 - https://www.youtube.com/watch?v=pIm2E0OfrlE
-    "oh my god becky look at that crust",      // Pizza Hut Ad                                         -    0:07 - https://www.youtube.com/watch?v=qgJq6mDO0qA
-    "what a get",                              // #125 - Celebrity Psychics: The Future of the Famous  -   22:34 - https://www.youtube.com/watch?v=yztEO_W3kcQ
-    "my name is eugene frank",                 // #126 - On-Set Teachers                               -    5:00 - https://www.youtube.com/watch?v=_YXIoAPBnoI
-    "we were homophobic the whole time",       // #184 - Celebrity Bodyguards                          -   57:53 - https://www.youtube.com/watch?v=35azFpdRHpk
-    "trish the dish body shaming",             // Trish the Dish body shaming - 12 Weeks of Dance      -   46:33 - https://www.patreon.com/posts/12-weeks-of-112913501
-    // insults from: #205 - Christmas Carol Singers - 55:39 through 1:00:48 - https://www.youtube.com/watch?v=q0vCTfqGGx4
+    "aoaoaoa",                                 // 1996-07-29 - Blackstreet - No Diggity                             -    3:10 - https://www.youtube.com/watch?v=3KL9mRus19o
+    "oh my god becky look at that crust",      // 2019-03-20 - Pizza Hut Ad                                         -    0:07 - https://www.youtube.com/watch?v=qgJq6mDO0qA
+    "did you guys fuck in the womb",           // 2022-08-24 - # 59 - Improvised Roundtables, Ep 58: Agents         -   14:04 - https://www.youtube.com/watch?v=XOdvvUTw0rE
+    "green alien",                             // 2023-02-23 - # 80 - Trailer Editors (w/ Jon Millstein)            -   20:35 - https://www.youtube.com/watch?v=o9RQd1RbPAM
+    "turn it off",                             // 2023-09-07 - # 96 - The Art Of Being a Wedding DJ                 -   11:19 - https://www.youtube.com/watch?v=47dXyVqZrzE
+    "so just write it",                        // 2023-09-20 - # 98 - How To Get Into A Film Festival               -   49:37 - https://www.youtube.com/watch?v=vFl4DotxZls
+    "veggie hot dog its good not lying",       // 2023-09-27 - # 99 - Hot Dog Callers                               -   22:52 - https://www.youtube.com/watch?v=9QzUAG8q4c0
+    "bed bath and beyond me",                  // 2024-02-29 - #120 - Inside "The View" Spinoff "The Look"          -   40:57 - https://www.youtube.com/watch?v=iMem5ewH2Ss
+    "what a get",                              // 2024-04-04 - #125 - Celebrity Psychics: The Future of the Famous  -   22:34 - https://www.youtube.com/watch?v=yztEO_W3kcQ
+    "my name is eugene frank",                 // 2024-04-11 - #126 - On-Set Teachers                               -    5:00 - https://www.youtube.com/watch?v=_YXIoAPBnoI
+    "barbara ann hmm",                         // 2024-05-16 - #131 - The Ladies of "The Look" are BACK!            -    0:41 - https://www.youtube.com/watch?v=GTtBP2S0gaI
+    "barbara ann huh",                         // 2024-05-16 - #131 - The Ladies of "The Look" are BACK!            -    0:42 - https://www.youtube.com/watch?v=GTtBP2S0gaI
+    "youre miscorrecting me",                  // 2024-05-16 - #131 - The Ladies of "The Look" are BACK!            -   39:09 - https://www.youtube.com/watch?v=GTtBP2S0gaI
+    "another day another dongle",              // 2024-05-16 - #131 - The Ladies of "The Look" are BACK!            -   45:22 - https://www.youtube.com/watch?v=GTtBP2S0gaI
+    "i cant relate",                           // 2024-06-13 - #135 - Vegas Performers                              -    4:01 - https://www.youtube.com/watch?v=pIm2E0OfrlE
+    "the puppet said that",                    // 2024-06-13 - #135 - Vegas Performers                              -   16:52 - https://www.youtube.com/watch?v=pIm2E0OfrlE
+    "jesus quist",                             // 2024-08-15 - #144 - We AlL pLaYeD tHe JoKeR                       -   10:12 - https://www.youtube.com/watch?v=4NycKy9hZH8
+    "why so bisexual",                         // 2024-08-15 - #144 - We AlL pLaYeD tHe JoKeR                       -   45:21 - https://www.youtube.com/watch?v=4NycKy9hZH8
+    "trish the dish body shaming",             // 2024-09-28 - Trish the Dish body shaming - 12 Weeks of Dance      -   46:33 - https://www.patreon.com/posts/12-weeks-of-112913501
+    "i need to calm down",                     // 2024-12-26 - Smosh Pit - How Well Do We Remember 2024?            -   12:03 - https://www.youtube.com/watch?v=Q7BPr7BLm0s
+    "richard get down from there",             // 2025-02-21 - #166 - We Made A Broadway Musical (with Gabe Gibbs)  -   27:55 - https://www.youtube.com/watch?v=vdVCT-Mv4BE
+    "stop it actually pisses me off",          // 2025-03-06 - #168 - Teen Filmmakers (with Katie Marovitch)        -    8:54 - https://www.youtube.com/watch?v=1wtltz-qx0Y
+    "we were homophobic the whole time",       // 2025-06-19 - #183 - Celebrity Bodyguards                          -   57:53 - https://www.youtube.com/watch?v=35azFpdRHpk
+    "moose master",                            // 2025-07-14 - Havin' A Day - Mariah Rose Faith + Jon Matteson      - 1:13:40 - https://www.youtube.com/watch?v=KLIoy2N8hE0
+    "come on flalalady",                       // 2025-09-18 - #195 - New Broadway Musical Cast (with Chris Renfro) -   14:46 - https://www.youtube.com/watch?v=Dlsb0-rPn3Y
+    "dizzle dutz",                             // 2025-10-30 - #200 - The 200 Person Panel                          - 1:32:37 - https://www.youtube.com/watch?v=rZog3fKixbk
+    "hi dizzle dutz",                          // 2025-10-30 - #200 - The 200 Person Panel                          - 1:32:41 - https://www.youtube.com/watch?v=rZog3fKixbk
+    "well hi dizzle dutz",                     // 2025-10-30 - #200 - The 200 Person Panel                          - 1:32:43 - https://www.youtube.com/watch?v=rZog3fKixbk
+    "dizzle dutz ipad",                        // 2025-10-30 - #200 - The 200 Person Panel                          - 1:33:30 - https://www.youtube.com/watch?v=rZog3fKixbk
+    "pinwheel",                                // 2025-11-08 - SNL - Pinwheel                                       -    0:53 - https://www.youtube.com/watch?v=ddYs_w6IffA
+    "sleep in labubu key change",              // 2025-12-11 - #205 - Christmas Carol Singers                       -   27:54 - https://www.youtube.com/watch?v=q0vCTfqGGx4
+
+    // insults from: 2025-12-11 - #205 - Christmas Carol Singers - 55:39 through 1:00:48 - https://www.youtube.com/watch?v=q0vCTfqGGx4
     "you corpse blowing skank",
     "youre a whore",
     "im a slut whore bitch",
@@ -229,6 +213,24 @@
     "youre a bad burp whos a disappointment to her dad",
     "sitting on a dock full of sluts",
     "you dirty whore",
+
+    "rock reveals jade",                       // 2026-01-15 - #209 - Vertical Micro-Drama Writer’s Room            -   58:21 - https://www.youtube.com/watch?v=U-eRshQEDyA
+    "goldfish for the cracka man",             // 2026-01-29 - #211 - Parents of Child Stars (with Ryan Gaul)       -   32:46 - https://www.youtube.com/watch?v=XTnodeLw8_c
+    "well wait a second now whos your nephew", // 2026-01-29 - #211 - Parents of Child Stars (with Ryan Gaul)       -   35:36 - https://www.youtube.com/watch?v=XTnodeLw8_c
+    "im always fostering kittens",             // 2026-01-29 - #211 - Parents of Child Stars (with Ryan Gaul)       -   46:39 - https://www.youtube.com/watch?v=XTnodeLw8_c
+    "nobody thinks im funny",                  // 2026-01-29 - #211 - Parents of Child Stars (with Ryan Gaul)       -   52:38 - https://www.youtube.com/watch?v=XTnodeLw8_c
+    "malpractice suit",                        // 2026-01-29 - #211 - Parents of Child Stars (with Ryan Gaul)       -   57:14 - https://www.youtube.com/watch?v=XTnodeLw8_c
+    "ho bags with wings",                      // 2026-02-12 - #213 - Romantasy Writers (with D.J. Mausner)         -   13:33 - https://www.youtube.com/watch?v=OtifYpD4Wm8
+    "fix you",                                 // 2026-02-19 - #214 - Monster Truck Drivers                         -   36:37 - https://www.youtube.com/watch?v=JBIKn_H-WUg
+    "sorry kids we dont go to church",         // 2026-03-14 - SNL - Tucker Carlson Weekend Update                  -    0:49 - https://www.youtube.com/watch?v=cssPptEqVWE
+    "thats the rule thats the goal now",       // 2026-03-14 - SNL - Tucker Carlson Weekend Update                  -    0:52 - https://www.youtube.com/watch?v=cssPptEqVWE
+    "they took the l and gave it to the gbtq", // 2026-03-14 - SNL - Tucker Carlson Weekend Update                  -    1:14 - https://www.youtube.com/watch?v=cssPptEqVWE
+    "what are we doing whats going on",        // 2026-03-14 - SNL - Tucker Carlson Weekend Update                  -    0:56 - https://www.youtube.com/watch?v=cssPptEqVWE
+    "your noose is untied",                    // 2026-03-19 - #218 - Irish Playwrights                             -   29:02 - https://www.youtube.com/watch?v=CMpGGcnupsw
+    "im falling",                              // 2026-04-23 - #222 - Traffic Reporters                             -    5:31 - https://www.youtube.com/watch?v=OBNJ71wFWQI
+    "im missing",                              // 2026-04-23 - #222 - Traffic Reporters                             -    5:47 - https://www.youtube.com/watch?v=OBNJ71wFWQI
+    "ive wandered off",                        // 2026-04-23 - #222 - Traffic Reporters                             -    5:51 - https://www.youtube.com/watch?v=OBNJ71wFWQI
+    "straight to padlet",                      // 2026-05-07 - #224 - WE ALL WROTE MEMOIRS - The After Show         -   22:22 - https://www.patreon.com/posts/we-all-wrote-157483717
   ];
 
   const board = document.getElementById("board");
