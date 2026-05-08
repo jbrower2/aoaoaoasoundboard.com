@@ -190,7 +190,6 @@
   const board = document.getElementById("board");
   const filter = document.getElementById("filter");
   const buttons = [];
-  let current = null;
 
   sounds.forEach(file => {
     const audio = new Audio(encodeURIComponent(file + ".mp3"));
@@ -201,25 +200,17 @@
     btn.textContent = file;
     buttons.push(btn);
     btn.addEventListener("click", () => {
-      if (current && current.audio !== audio) {
-        current.audio.pause();
-        current.audio.currentTime = 0;
-        current.btn.classList.remove("playing");
-      }
       if (!audio.paused) {
         audio.pause();
         audio.currentTime = 0;
         btn.classList.remove("playing");
-        current = null;
       } else {
         audio.play();
         btn.classList.add("playing");
-        current = { audio, btn };
       }
     });
     audio.addEventListener("ended", () => {
       btn.classList.remove("playing");
-      if (current && current.audio === audio) current = null;
     });
 
     board.appendChild(btn);
