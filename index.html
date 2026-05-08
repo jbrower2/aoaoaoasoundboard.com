@@ -148,6 +148,7 @@
 
 <footer>
   <a class="submissions" href="https://forms.gle/4KtG1GAvCupCYK1f7">submissions</a>
+  <button class="edit-toggle" id="modeToggle" type="button">multiple</button>
   <button class="edit-toggle" id="editToggle" type="button">rearrange</button>
   <button class="edit-toggle" id="resetOrder" type="button" hidden>reset order</button>
 </footer>
@@ -233,8 +234,17 @@
   const filter = document.getElementById("filter");
   const editToggle = document.getElementById("editToggle");
   const resetBtn = document.getElementById("resetOrder");
+  const modeToggle = document.getElementById("modeToggle");
   const STORAGE_KEY = "soundOrder";
+  const MODE_KEY = "playMode";
   const buttons = [];
+  const playing = new Set();
+  let mode = "multiple";
+  try {
+    const saved = localStorage.getItem(MODE_KEY);
+    if (saved === "single" || saved === "multiple") mode = saved;
+  } catch {}
+  modeToggle.textContent = mode;
 
   function loadOrder() {
     let saved = null;
@@ -270,19 +280,31 @@
     btn.textContent = file;
     btn.style.animationDelay = (Math.random() * -0.25) + "s";
     buttons.push(btn);
+    const entry = { audio, btn };
     btn.addEventListener("click", () => {
       if (document.body.classList.contains("edit")) return;
       if (!audio.paused) {
         audio.pause();
         audio.currentTime = 0;
         btn.classList.remove("playing");
+        playing.delete(entry);
       } else {
+        if (mode === "single") {
+          playing.forEach(p => {
+            p.audio.pause();
+            p.audio.currentTime = 0;
+            p.btn.classList.remove("playing");
+          });
+          playing.clear();
+        }
         audio.play();
         btn.classList.add("playing");
+        playing.add(entry);
       }
     });
     audio.addEventListener("ended", () => {
       btn.classList.remove("playing");
+      playing.delete(entry);
     });
 
     btn.addEventListener("dragstart", e => {
@@ -349,6 +371,22 @@
   });
 
   updateResetVisibility();
+
+  modeToggle.addEventListener("click", () => {
+    mode = mode === "multiple" ? "single" : "multiple";
+    modeToggle.textContent = mode;
+    try { localStorage.setItem(MODE_KEY, mode); } catch {}
+    if (mode === "single" && playing.size > 1) {
+      const keep = Array.from(playing).pop();
+      Array.from(playing).forEach(p => {
+        if (p === keep) return;
+        p.audio.pause();
+        p.audio.currentTime = 0;
+        p.btn.classList.remove("playing");
+        playing.delete(p);
+      });
+    }
+  });
 </script>
 </body>
 </html>
